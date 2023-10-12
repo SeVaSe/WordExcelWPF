@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using System.Windows.Forms.DataVisualization.Charting; докачать библ
+using Word = Microsoft.Office.Interop.Word;
+using Excel = Microsoft.Office.Interop.Excel;
+
+
 
 namespace WordExcelWPF
 {
@@ -28,7 +33,7 @@ namespace WordExcelWPF
 
         private void Window_Close(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult res = MessageBox.Show("вы точно хотите выйти?", "Подтверждение выхода", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res = MessageBox.Show("Вы точно хотите выйти?", "Подтверждение выхода", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (res == MessageBoxResult.No)
             {

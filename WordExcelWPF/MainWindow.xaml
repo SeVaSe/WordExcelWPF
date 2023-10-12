@@ -4,10 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WordExcelWPF"
+        xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization" xmlns:charts1="clr-namespace:Microsoft.Office.Interop.Excel;assembly=Microsoft.Office.Interop.Excel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="370*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Пользователь" Width="90" Margin="147,12,563,36"/>
+        <ComboBox Name="CmbUsers" Margin="540,12,102,38" SelectionChanged="UpdateChart"/>
+        <Label Content="Тип диаграммы" Margin="442,12,260,33"/>
+        <ComboBox Name="CmbDiagram" Margin="237,12,405,38" DisplayMemberPath="FIO" SelectionChanged="UpdateChart"/>
+        <WindowsFormsHost HorizontalAlignment="Left" Height="341" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="775">
+            
+        </WindowsFormsHost>
+        <Button Content="Экспорт в Excel" HorizontalAlignment="Left" Margin="308,47,0,0" VerticalAlignment="Top" Height="20" Width="114"/>
+        <Button Content="Экспорт в Word" HorizontalAlignment="Left" Margin="478,47,0,0" VerticalAlignment="Top" Height="20" Width="114"/>
+
     </Grid>
 </Window>
