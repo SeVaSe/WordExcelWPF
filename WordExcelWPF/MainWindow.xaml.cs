@@ -15,8 +15,8 @@ using System.Windows.Shapes;
 //using System.Windows.Forms.DataVisualization.Charting; докачать библ
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
-
-
+using System.Windows.Forms.DataVisualization.Charting;
+using WordExcelWPF.Entities;
 
 namespace WordExcelWPF
 {
@@ -25,10 +25,22 @@ namespace WordExcelWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Entities.Sevastyanov_DB__PaymentEntities _context = new Entities.Sevastyanov_DB__PaymentEntities();
         public MainWindow()
         {
             InitializeComponent();
             Closing += Window_Close;
+            ChartPayments.ChartAreas.Add(new ChartArea("Main"));
+
+            var currentSeries = new Series("Платежи")
+            {
+                IsValueShownAsLabel = true
+            };
+            ChartPayments.Series.Add(currentSeries);
+
+            CmbUsers.ItemsSource = _context.User.ToList(); //ФИО пользователей
+            CmbDiagram.ItemsSource = Enum.GetValues(typeof(SeriesChartType));
+
         }
 
         private void Window_Close(object sender, System.ComponentModel.CancelEventArgs e)
@@ -40,5 +52,24 @@ namespace WordExcelWPF
                 e.Cancel = true;
             }
         }
+
+        private void UpdateChart(object sender, SelectionChangedEventArgs e)
+        {
+            if (CmbUsers.SelectedItem is User currentUser && CmbDiagram.SelectedItem is SeriesChartType currentType)
+            {
+                Series currentSeries = ChartPayments.Series.FirstOrDefault();
+                currentSeries.ChartType = currentType;
+                currentSeries.Points.Clear();
+
+                var categoriesList = _context.Category.ToList();
+                foreach (var category in categoriesList)
+                {
+                    currentSeries.Points.AddXY(category.Name,
+                        _context.Payment.ToList().Where(u => u.User == currentUser
+                        && u.Category == category).Sum(u => u.Price * u.Num));
+                }
+            }
+        }
+
     }
 }

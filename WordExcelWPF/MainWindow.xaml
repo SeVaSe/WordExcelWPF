@@ -14,15 +14,25 @@
             <RowDefinition Height="80*"/>
             <RowDefinition Height="370*"/>
         </Grid.RowDefinitions>
-        <Label Content="Пользователь" Width="90" Margin="147,12,563,36"/>
-        <ComboBox Name="CmbUsers" Margin="540,12,102,38" SelectionChanged="UpdateChart"/>
-        <Label Content="Тип диаграммы" Margin="442,12,260,33"/>
-        <ComboBox Name="CmbDiagram" Margin="237,12,405,38" DisplayMemberPath="FIO" SelectionChanged="UpdateChart"/>
-        <WindowsFormsHost HorizontalAlignment="Left" Height="341" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="775">
-            
-        </WindowsFormsHost>
-        <Button Content="Экспорт в Excel" HorizontalAlignment="Left" Margin="308,47,0,0" VerticalAlignment="Top" Height="20" Width="114"/>
-        <Button Content="Экспорт в Word" HorizontalAlignment="Left" Margin="478,47,0,0" VerticalAlignment="Top" Height="20" Width="114"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <Label Content="Пользователь" Width="90"/>
+            <ComboBox x:Name="CmbUsers"  DisplayMemberPath="FIO" SelectionChanged="UpdateChart" Width="130" Height="24"/>
+            <Label Content="Тип диаграммы" Height="51" Width="119"/>
+            <ComboBox x:Name="CmbDiagram"  SelectionChanged="UpdateChart" Width="83" Height="30"/>
+            <Button Content="Экспорт в Excel" Height="20" Width="111"/>
+            <Button Content="Экспорт в Word" Height="20" Width="114"/>
 
+        </StackPanel>
+
+        <WindowsFormsHost HorizontalAlignment="Left" Height="341" Margin="10,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="775">
+            <charts:Chart x:Name="ChartPayments">
+                <charts:Chart.Legends>
+                    <charts:Legend>
+
+                    </charts:Legend>
+                </charts:Chart.Legends>
+            </charts:Chart>
+
+        </WindowsFormsHost>
     </Grid>
 </Window>
