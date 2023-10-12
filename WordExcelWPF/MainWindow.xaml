@@ -19,8 +19,8 @@
             <ComboBox x:Name="CmbUsers"  DisplayMemberPath="FIO" SelectionChanged="UpdateChart" Width="130" Height="24"/>
             <Label Content="Тип диаграммы" Height="51" Width="119"/>
             <ComboBox x:Name="CmbDiagram"  SelectionChanged="UpdateChart" Width="83" Height="30"/>
-            <Button Content="Экспорт в Excel" Height="20" Width="111"/>
-            <Button Content="Экспорт в Word" Height="20" Width="114"/>
+            <Button Content="Экспорт в Excel" Height="20" Width="111" Click="Button_Click_1"/>
+            <Button Content="Экспорт в Word" Height="20" Width="114" Click="Button_Click"/>
 
         </StackPanel>
 
